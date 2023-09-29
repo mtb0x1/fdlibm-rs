@@ -21,4 +21,4 @@ println!("sin(1)={}",value);
 1) Avoid using `std::`, instead use `core::` when possible.
 2) Support other targets (currently only `x86_64-unknown-linux-gnu` is supported)
 3) Support other [Modes](fdlibm/readme).
-
+4) Benchmarks.
