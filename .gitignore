@@ -1,2 +1,4 @@
 /target
-/fdlibm
+/fdlibm/fdlibm
+/fdlibm/libfdlibm.a
+/fdlibm/config.*

@@ -7,6 +7,19 @@ authors = ["mtb0x1 <39337159+mtb0x1@users.noreply.github.com>"]
 repository = "https://github.com/mtb0x1/fdlibm-rs"
 homepage = "https://github.com/mtb0x1/fdlibm-rs"
 readme = "README.md"
-description = "rust port of FDLIBM, a C math library for machines that support IEEE 754 floating-point arithmetic."
+description = "rust wrapper of FDLIBM, a C math library for machines that support IEEE 754 floating-point arithmetic."
 exclude = [".gitignore"]
+build = "build.rs"
+keywords = ["FDLIBM", "FDLIBM rust", "math","IEEE","IEEE 754","ffi"]
 
+
+[build-dependencies]
+bindgen = { version = "0.68.1", default-features = false, features = ["runtime"] }
+cc = { version = "1.0.83"}
+
+
+[lib]
+name = "fdlibm_rs"
+path = "src/lib.rs"
+
+ 
