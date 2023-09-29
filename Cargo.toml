@@ -10,7 +10,7 @@ readme = "README.md"
 description = "rust wrapper of FDLIBM, a C math library for machines that support IEEE-754 floating-point arithmetic."
 exclude = [".gitignore"]
 build = "build.rs"
-keywords = ["FDLIBM", "FDLIBM-rs", "FDLIBM-rust", "cmath", "math","IEEE", "IEEE-754", "ffi"]
+keywords = ["FDLIBM-rs", "cmath", "math", "IEEE-754", "ffi"]
 
 [build-dependencies]
 bindgen = { version = "0.68.1", default-features = false, features = ["runtime"] }
