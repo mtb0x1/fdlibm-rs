@@ -97,50 +97,65 @@ pub fn intrinsics_inspired_test() {
 
     assert_approx_eq!(unsafe { cbrt(27.0f64) }, 3.0f64);
 
-    assert_approx_eq!(unsafe { hypot(3.0f64, 4.0f64) }, 5.0f64);  
-   
-    assert_eq!(unsafe {ldexp(0.65f64, 3i32)}, 5.2f64);
+    assert_approx_eq!(unsafe { hypot(3.0f64, 4.0f64) }, 5.0f64);
 
-    assert_eq!(unsafe {ldexp(1.42, 0xFFFF)}, core::f64::INFINITY);
-    
-    assert_eq!(unsafe {ldexp(1.42, -0xFFFF)}, 0f64);
+    assert_eq!(unsafe { ldexp(0.65f64, 3i32) }, 5.2f64);
 
-    assert_approx_eq!(unsafe{sin(0f64)}, 0f64);
-    
-    assert_approx_eq!(unsafe {sin(core::f64::consts::PI / 2f64)}, 1f64);
+    assert_eq!(unsafe { ldexp(1.42, 0xFFFF) }, core::f64::INFINITY);
 
-    assert_approx_eq!(unsafe {sin(core::f64::consts::FRAC_PI_6)}, 0.5);
-    
-    assert_approx_eq!(unsafe{ asin(sin(core::f64::consts::FRAC_PI_4))} , core::f64::consts::FRAC_PI_4);
-    
-    assert_approx_eq!(unsafe {sinh(1.0f64)}, 1.1752012f64);
+    assert_eq!(unsafe { ldexp(1.42, -0xFFFF) }, 0f64);
 
-    assert_approx_eq!(unsafe{asinh(-2.0f64)}, -1.443635475178810342493276740273105f64);
+    assert_approx_eq!(unsafe { sin(0f64) }, 0f64);
 
-    assert_approx_eq!(unsafe {cos(core::f64::consts::PI * 2f64)}, 1f64);
- 
-    assert_approx_eq!(unsafe { cos(core::f64::consts::PI * 2f64)}, 1f64);
- 
-    assert_approx_eq!(unsafe {cos(core::f64::consts::FRAC_PI_3)}, 0.5);
- 
-    assert_approx_eq!(unsafe {acos(cos(core::f64::consts::FRAC_PI_4))}, core::f64::consts::FRAC_PI_4);
- 
-    assert_approx_eq!(unsafe {cosh(1.0f64)}, 1.54308f64);
- 
-    assert_approx_eq!(unsafe {acosh(3.0f64)}, 1.76274717403908605046521864995958461f64);
- 
-    assert_approx_eq!(unsafe {tan(1.0f64)}, 1.557408f64);
- 
-    assert_approx_eq!(unsafe {atan(tan(1.0_f64))},1.0_f64);
- 
-    assert_approx_eq!(unsafe {atan2(1.0f64,2.0f64)}, 0.46364761f64);
+    assert_approx_eq!(unsafe { sin(core::f64::consts::PI / 2f64) }, 1f64);
+
+    assert_approx_eq!(unsafe { sin(core::f64::consts::FRAC_PI_6) }, 0.5);
 
     assert_approx_eq!(
-        unsafe { tanh(1.0f64)},
+        unsafe { asin(sin(core::f64::consts::FRAC_PI_4)) },
+        core::f64::consts::FRAC_PI_4
+    );
+
+    assert_approx_eq!(unsafe { sinh(1.0f64) }, 1.1752012f64);
+
+    assert_approx_eq!(
+        unsafe { asinh(-2.0f64) },
+        -1.443635475178810342493276740273105f64
+    );
+
+    assert_approx_eq!(unsafe { cos(core::f64::consts::PI * 2f64) }, 1f64);
+
+    assert_approx_eq!(unsafe { cos(core::f64::consts::PI * 2f64) }, 1f64);
+
+    assert_approx_eq!(unsafe { cos(core::f64::consts::FRAC_PI_3) }, 0.5);
+
+    assert_approx_eq!(
+        unsafe { acos(cos(core::f64::consts::FRAC_PI_4)) },
+        core::f64::consts::FRAC_PI_4
+    );
+
+    assert_approx_eq!(unsafe { cosh(1.0f64) }, 1.54308f64);
+
+    assert_approx_eq!(
+        unsafe { acosh(3.0f64) },
+        1.76274717403908605046521864995958461f64
+    );
+
+    assert_approx_eq!(unsafe { tan(1.0f64) }, 1.557408f64);
+
+    assert_approx_eq!(unsafe { atan(tan(1.0_f64)) }, 1.0_f64);
+
+    assert_approx_eq!(unsafe { atan2(1.0f64, 2.0f64) }, 0.46364761f64);
+
+    assert_approx_eq!(
+        unsafe { tanh(1.0f64) },
         (1.0 - core::f64::consts::E.powi(-2)) / (1.0 + core::f64::consts::E.powi(-2))
     );
- 
-    assert_approx_eq!(unsafe {atanh(0.5f64)}, 0.54930614433405484569762261846126285f64);
+
+    assert_approx_eq!(
+        unsafe { atanh(0.5f64) },
+        0.54930614433405484569762261846126285f64
+    );
 
     //@todo ?
     //assert_approx_eq!(unsafe {gamma(5.0f64)}, 5.0f64.gamma());
