@@ -31,9 +31,24 @@ jobs:
         rustup toolchain install nightly-x86_64-unknown-linux-gnu
         rustup component add rust-src --toolchain nightly-x86_64-unknown-linux-gnu
 
-    - name: Test
+    - name: Test default
       run:  cargo +nightly test
+
+    - name: Test _IEEE_LIBM
+      run:  _IEEE_LIBM="" cargo +nightly test
     
+    - name: Test _IEEE_MODE
+      run:  _IEEE_MODE="" cargo +nightly test
+    
+    - name: Test _XOPEN_MODE
+      run:  _XOPEN_MODE="" cargo +nightly test
+    
+    - name: Test _POSIX_MODE
+      run:  _POSIX_MODE="" cargo +nightly test
+    
+    - name: Test _SVID3_MODE
+      run:  _SVID3_MODE="" cargo +nightly test
+
     - name: Build
       run:  cargo +nightly build
 

@@ -18,7 +18,7 @@ println!("sin(1)={}",value);
 2) Other modes decribed in [fdlibm](fdlibm/readme) are not supported yet.
 
 # Todo
-1) Avoid using `std::`, instead use `core::` when possible.
+1) <s>Avoid using `std::`, instead use `core::` when possible.</s>
 2) Support other targets (currently only `x86_64-unknown-linux-gnu` is supported)
-3) Support other [Modes](fdlibm/readme).
+3) <s>Support other [Modes](fdlibm/readme).</s>
 4) Benchmarks.

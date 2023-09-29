@@ -1,4 +1,4 @@
-const _FLAGS_NAMES: &[&str; 5] = &[
+const FLAGS_NAMES: &[&str; 5] = &[
     "_IEEE_LIBM",
     "_IEEE_MODE",
     "_XOPEN_MODE",
@@ -25,7 +25,6 @@ fn bindgen_symbols(path: &str, _flags: &std::collections::HashSet<String>) {
 fn build_bundled(flags: &std::collections::HashSet<String>) {
     let mut cfg = cc::Build::new();
     cfg.include("fdlibm")
-        .define("__LITTLE_ENDIAN", None)
         .file(std::path::Path::new("fdlibm/e_acos.c"))
         .file(std::path::Path::new("fdlibm/e_acosh.c"))
         .file(std::path::Path::new("fdlibm/e_asin.c"))
@@ -106,9 +105,15 @@ fn build_bundled(flags: &std::collections::HashSet<String>) {
         .file(std::path::Path::new("fdlibm/w_scalb.c"))
         .file(std::path::Path::new("fdlibm/w_sinh.c"))
         .file(std::path::Path::new("fdlibm/w_sqrt.c"));
+    #[cfg(target_endian = "little")]
+    {
+        cfg.flag("-D__LITTLE_ENDIAN");
+    }
     if !flags.is_empty() {
+        //panic!("Error {flags:?}");
         for flag in flags.iter() {
             cfg.flag(&format!("-D{}", flag));
+            
         }
     } else {
         cfg.flag("-D_IEEE_LIBM");
@@ -130,11 +135,9 @@ pub fn main() {
     println!("cargo:rerun-if-env-changed=_POSIX_MODE");
     println!("cargo:rerun-if-env-changed=_SVID3_MODE");
     //switch to array, and ditch std::
-    let flags: std::collections::HashSet<String> = std::collections::HashSet::with_capacity(5);
-    /* flags = FLAGS_NAMES
-    .iter()
+    let flags: std::collections::HashSet<String> = FLAGS_NAMES.iter()
     .filter_map(|flag| std::env::var(flag).ok().map(|_| flag.to_string()))
-    .collect();*/
+    .collect();
 
     bindgen_symbols("src/fdlibm.rs", &flags);
     /*
