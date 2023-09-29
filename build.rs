@@ -114,7 +114,7 @@ fn build_bundled(flags: &std::collections::HashSet<String>) {
         cfg.flag("-D_IEEE_LIBM");
     }
     cfg.warnings(false);
-    cfg.out_dir("fdlibm/");
+    //cfg.out_dir("fdlibm/");
     cfg.compile("fdlibm");
 }
 
