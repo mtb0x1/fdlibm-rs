@@ -14,7 +14,7 @@ println!("sin(1)={}",value);
 ```
 
 # Disclaimer 
-1) This lib is currently in beta version, some of functions doesn't have unit tests and some are buggy ([`gamme`](tests/fdlibm.rs#L146)).
+1) This lib is currently in beta version, some of functions doesn't have unit tests and some are buggy ([`gamma`](tests/fdlibm.rs#L146)).
 2) Other modes decribed in [fdlibm](fdlibm/readme) are not supported yet.
 
 # Todo
