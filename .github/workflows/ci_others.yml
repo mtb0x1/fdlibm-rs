@@ -48,58 +48,61 @@ jobs:
 
     - name: Build x86_64-linux-musl 
       run: cargo build --target x86_64-unknown-linux-musl 
-      
-    - name: Test _IEEE_LIBM for x86_64-pc-windows-gnu
-      run:  _IEEE_LIBM="" cargo  test --target x86_64-pc-windows-gnu
 
-    - name: Test _IEEE_MODE for x86_64-pc-windows-gnu
-      run:  _IEEE_MODE="" cargo  test --target x86_64-pc-windows-gnu
+    #  @todo move these test to proper windows-ci
+    #- name: Test _IEEE_LIBM for x86_64-pc-windows-gnu
+    #  run:  _IEEE_LIBM="" cargo  test --target x86_64-pc-windows-gnu
+
+    #- name: Test _IEEE_MODE for x86_64-pc-windows-gnu
+    #  run:  _IEEE_MODE="" cargo  test --target x86_64-pc-windows-gnu
     
-    - name: Test _XOPEN_MODE for x86_64-pc-windows-gnu
-      run:  _XOPEN_MODE="" cargo  test --target x86_64-pc-windows-gnu
+    #- name: Test _XOPEN_MODE for x86_64-pc-windows-gnu
+    #  run:  _XOPEN_MODE="" cargo  test --target x86_64-pc-windows-gnu
     
-    - name: Test _POSIX_MODE for x86_64-pc-windows-gnu
-      run:  _POSIX_MODE="" cargo  test --target x86_64-pc-windows-gnu
+    #- name: Test _POSIX_MODE for x86_64-pc-windows-gnu
+    #  run:  _POSIX_MODE="" cargo  test --target x86_64-pc-windows-gnu
     
-    - name: Test _SVID3_MODE for x86_64-pc-windows-gnu
-      run:  _SVID3_MODE="" cargo  test --target x86_64-pc-windows-gnu
+    #- name: Test _SVID3_MODE for x86_64-pc-windows-gnu
+    #  run:  _SVID3_MODE="" cargo  test --target x86_64-pc-windows-gnu
 
       #msvc won't be supported, use gnu version
     - name: Build x86_64-pc-windows-gnu
       run: cargo build --target x86_64-pc-windows-gnu
-    
-    - name: Test _IEEE_LIBM for x86_64-apple-darwin
-      run:  _IEEE_LIBM="" cargo  test --target x86_64-apple-darwin 
 
-    - name: Test _IEEE_MODE for x86_64-apple-darwin
-      run:  _IEEE_MODE="" cargo  test --target x86_64-apple-darwin 
+    #  @todo move these test to proper apple-darwin-ci
+    # - name: Test _IEEE_LIBM for x86_64-apple-darwin
+    #   run:  _IEEE_LIBM="" cargo  test --target x86_64-apple-darwin 
+
+    # - name: Test _IEEE_MODE for x86_64-apple-darwin
+    #   run:  _IEEE_MODE="" cargo  test --target x86_64-apple-darwin 
     
-    - name: Test _XOPEN_MODE for x86_64-apple-darwin
-      run:  _XOPEN_MODE="" cargo  test --target x86_64-apple-darwin 
+    # - name: Test _XOPEN_MODE for x86_64-apple-darwin
+    #   run:  _XOPEN_MODE="" cargo  test --target x86_64-apple-darwin 
     
-    - name: Test _POSIX_MODE for x86_64-apple-darwin
-      run:  _POSIX_MODE="" cargo  test --target x86_64-apple-darwin 
+    # - name: Test _POSIX_MODE for x86_64-apple-darwin
+    #   run:  _POSIX_MODE="" cargo  test --target x86_64-apple-darwin 
     
-    - name: Test _SVID3_MODE for x86_64-apple-darwin
-      run:  _SVID3_MODE="" cargo  test --target x86_64-apple-darwin   
+    # - name: Test _SVID3_MODE for x86_64-apple-darwin
+    #   run:  _SVID3_MODE="" cargo  test --target x86_64-apple-darwin   
       
     - name: Build x86_64-apple-darwin
       run: cargo build --target x86_64-apple-darwin 
-    
-    - name: Test _IEEE_LIBM for aarch64-apple-darwin 
-      run:  _IEEE_LIBM="" cargo  test --target aarch64-apple-darwin 
 
-    - name: Test _IEEE_MODE for aarch64-apple-darwin 
-      run:  _IEEE_MODE="" cargo  test --target aarch64-apple-darwin 
+    #  @todo move these test to proper aarch64-apple-darwin
+    #- name: Test _IEEE_LIBM for aarch64-apple-darwin 
+    #  run:  _IEEE_LIBM="" cargo  test --target aarch64-apple-darwin 
+
+    #- name: Test _IEEE_MODE for aarch64-apple-darwin 
+    #  run:  _IEEE_MODE="" cargo  test --target aarch64-apple-darwin 
     
-    - name: Test _XOPEN_MODE for aarch64-apple-darwin 
-      run:  _XOPEN_MODE="" cargo  test --target aarch64-apple-darwin
+    #- name: Test _XOPEN_MODE for aarch64-apple-darwin 
+    #  run:  _XOPEN_MODE="" cargo  test --target aarch64-apple-darwin
     
-    - name: Test _POSIX_MODE for aarch64-apple-darwin 
-      run:  _POSIX_MODE="" cargo  test --target aarch64-apple-darwin 
+    #- name: Test _POSIX_MODE for aarch64-apple-darwin 
+    #  run:  _POSIX_MODE="" cargo  test --target aarch64-apple-darwin 
     
-    - name: Test _SVID3_MODE for aarch64-apple-darwin 
-      run:  _SVID3_MODE="" cargo  test --target aarch64-apple-darwin  
+    #- name: Test _SVID3_MODE for aarch64-apple-darwin 
+    #  run:  _SVID3_MODE="" cargo  test --target aarch64-apple-darwin  
     
     - name: Build aarch64-apple-darwin
       run: cargo build --target aarch64-apple-darwin
