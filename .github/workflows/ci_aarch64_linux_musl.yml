@@ -1,0 +1,40 @@
+name: ci_aarch64_linux_musl
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Install cross-rs
+      run: |
+        cargo install cross --git https://github.com/cross-rs/cross
+
+    - name: Check out source code
+      uses: actions/checkout@v3
+
+    - name: Test _IEEE_LIBM for aarch64-unknown-linux-musl
+      run:  _IEEE_LIBM="" cross test --target aarch64-unknown-linux-musl
+
+    - name: Test _IEEE_MODE for aarch64-unknown-linux-musl
+      run:  _IEEE_MODE="" cross test --target aarch64-unknown-linux-musl
+
+    - name: Test _XOPEN_MODE for aarch64-unknown-linux-musl
+      run:  _XOPEN_MODE="" cross test --target aarch64-unknown-linux-musl
+
+    - name: Test _POSIX_MODE for aarch64-unknown-linux-musl
+      run:  _POSIX_MODE="" cross test --target aarch64-unknown-linux-musl
+
+    - name: Test _SVID3_MODE for aarch64-unknown-linux-musl
+      run:  _SVID3_MODE="" cross test --target aarch64-unknown-linux-musl
+
+    - name: Build aarch64_linux_musl
+      run: cross build --target aarch64-unknown-linux-musl
