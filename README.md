@@ -22,5 +22,7 @@ println!("sin(1)={}",value);
 2) Support other targets (wip):
     - [X] `x86_64-unknown-linux-gnu`
     - [X] `x86_64-unknown-linux-musl`
+    - [X] `aarch64-unknown-linux-gnu`
+    
 3) <s>Support other [Modes](fdlibm/readme).</s>
 4) Benchmarks.
