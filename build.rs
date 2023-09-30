@@ -33,19 +33,19 @@ fn build_bundled(flags: &std::collections::HashSet<String>) {
         .file(std::path::Path::new("fdlibm/e_cosh.c"))
         .file(std::path::Path::new("fdlibm/e_exp.c"))
         .file(std::path::Path::new("fdlibm/e_fmod.c"))
-        .file(std::path::Path::new("fdlibm/e_gamma.c"))
         .file(std::path::Path::new("fdlibm/e_gamma_r.c"))
+        .file(std::path::Path::new("fdlibm/e_gamma.c"))
         .file(std::path::Path::new("fdlibm/e_hypot.c"))
         .file(std::path::Path::new("fdlibm/e_j0.c"))
         .file(std::path::Path::new("fdlibm/e_j1.c"))
         .file(std::path::Path::new("fdlibm/e_jn.c"))
-        .file(std::path::Path::new("fdlibm/e_lgamma.c"))
         .file(std::path::Path::new("fdlibm/e_lgamma_r.c"))
-        .file(std::path::Path::new("fdlibm/e_log10.c"))
+        .file(std::path::Path::new("fdlibm/e_lgamma.c"))
         .file(std::path::Path::new("fdlibm/e_log.c"))
+        .file(std::path::Path::new("fdlibm/e_log10.c"))
         .file(std::path::Path::new("fdlibm/e_pow.c"))
-        .file(std::path::Path::new("fdlibm/e_remainder.c"))
         .file(std::path::Path::new("fdlibm/e_rem_pio2.c"))
+        .file(std::path::Path::new("fdlibm/e_remainder.c"))
         .file(std::path::Path::new("fdlibm/e_scalb.c"))
         .file(std::path::Path::new("fdlibm/e_sinh.c"))
         .file(std::path::Path::new("fdlibm/e_sqrt.c"))
@@ -90,16 +90,16 @@ fn build_bundled(flags: &std::collections::HashSet<String>) {
         .file(std::path::Path::new("fdlibm/w_cosh.c"))
         .file(std::path::Path::new("fdlibm/w_exp.c"))
         .file(std::path::Path::new("fdlibm/w_fmod.c"))
-        .file(std::path::Path::new("fdlibm/w_gamma.c"))
         .file(std::path::Path::new("fdlibm/w_gamma_r.c"))
+        .file(std::path::Path::new("fdlibm/w_gamma.c"))
         .file(std::path::Path::new("fdlibm/w_hypot.c"))
         .file(std::path::Path::new("fdlibm/w_j0.c"))
         .file(std::path::Path::new("fdlibm/w_j1.c"))
         .file(std::path::Path::new("fdlibm/w_jn.c"))
-        .file(std::path::Path::new("fdlibm/w_lgamma.c"))
         .file(std::path::Path::new("fdlibm/w_lgamma_r.c"))
-        .file(std::path::Path::new("fdlibm/w_log10.c"))
+        .file(std::path::Path::new("fdlibm/w_lgamma.c"))
         .file(std::path::Path::new("fdlibm/w_log.c"))
+        .file(std::path::Path::new("fdlibm/w_log10.c"))
         .file(std::path::Path::new("fdlibm/w_pow.c"))
         .file(std::path::Path::new("fdlibm/w_remainder.c"))
         .file(std::path::Path::new("fdlibm/w_scalb.c"))
@@ -110,16 +110,13 @@ fn build_bundled(flags: &std::collections::HashSet<String>) {
         cfg.flag("-D__LITTLE_ENDIAN");
     }
     if !flags.is_empty() {
-        //panic!("Error {flags:?}");
         for flag in flags.iter() {
             cfg.flag(&format!("-D{}", flag));
-            
         }
     } else {
         cfg.flag("-D_IEEE_LIBM");
     }
     cfg.warnings(false);
-    //cfg.out_dir("fdlibm/");
     cfg.compile("fdlibm");
 }
 
@@ -134,10 +131,11 @@ pub fn main() {
     println!("cargo:rerun-if-env-changed=_XOPEN_MODE");
     println!("cargo:rerun-if-env-changed=_POSIX_MODE");
     println!("cargo:rerun-if-env-changed=_SVID3_MODE");
-    //switch to array, and ditch std::
-    let flags: std::collections::HashSet<String> = FLAGS_NAMES.iter()
-    .filter_map(|flag| std::env::var(flag).ok().map(|_| flag.to_string()))
-    .collect();
+
+    let flags: std::collections::HashSet<String> = FLAGS_NAMES
+        .iter()
+        .filter_map(|flag| std::env::var(flag).ok().map(|_| flag.to_string()))
+        .collect();
 
     bindgen_symbols("src/fdlibm.rs", &flags);
     /*
@@ -150,7 +148,7 @@ pub fn main() {
     #				_XOPEN_MODE 	-- X/OPEN
     #				_POSIX_MODE 	-- POSIX/ANSI
     #				_SVID3_MODE 	-- SVID
+    # for more info check fdlibm/readme
     */
-    // /!\ only mode _IEEE_LIBM is supported for now
     build_bundled(&flags);
 }
