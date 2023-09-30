@@ -20,9 +20,10 @@ println!("sin(1)={}",value);
 # Todo
 1) <s>Avoid using `std::`, instead use `core::` when possible.</s>
 2) Support other targets (wip):
+    - [X] `aarch64-unknown-linux-gnu`
+    - [X] `x86_64-pc-windows-gnu`
     - [X] `x86_64-unknown-linux-gnu`
     - [X] `x86_64-unknown-linux-musl`
-    - [X] `aarch64-unknown-linux-gnu`
     
 3) <s>Support other [Modes](fdlibm/readme).</s>
 4) Benchmarks.
