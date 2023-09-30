@@ -14,31 +14,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Install aarch64-tools
+    - name: Install cross-rs
       run: |
-        sudo apt-get update && sudo apt-get install --yes build-essential binutils-aarch64-linux-gnu gcc-aarch64-linux-gnu linux-libc-dev-arm64-cross
-    
-    - name: Install Rustup targets
-      run : | 
-        rustup target add aarch64-unknown-linux-gnu
+        cargo install cross --git https://github.com/cross-rs/cross
 
     - name: Check out source code
       uses: actions/checkout@v3
 
     - name: Test _IEEE_LIBM for aarch64-unknown-linux-gnu
-      run:  _IEEE_LIBM="" cargo  test --target aarch64-unknown-linux-gnu
+      run:  _IEEE_LIBM="" cross test --target aarch64-unknown-linux-gnu
 
     - name: Test _IEEE_MODE for aarch64-unknown-linux-gnu
-      run:  _IEEE_MODE="" cargo  test --target aarch64-unknown-linux-gnu
-    
+      run:  _IEEE_MODE="" cross test --target aarch64-unknown-linux-gnu
+
     - name: Test _XOPEN_MODE for aarch64-unknown-linux-gnu
-      run:  _XOPEN_MODE="" cargo  test --target aarch64-unknown-linux-gnu
-    
+      run:  _XOPEN_MODE="" cross test --target aarch64-unknown-linux-gnu
+
     - name: Test _POSIX_MODE for aarch64-unknown-linux-gnu
-      run:  _POSIX_MODE="" cargo  test --target aarch64-unknown-linux-gnu
-    
+      run:  _POSIX_MODE="" cross test --target aarch64-unknown-linux-gnu
+
     - name: Test _SVID3_MODE for aarch64-unknown-linux-gnu
-      run:  _SVID3_MODE="" cargo  test --target aarch64-unknown-linux-gnu
+      run:  _SVID3_MODE="" cross test --target aarch64-unknown-linux-gnu
 
     - name: Build aarch64_linux
-      run: cargo build --target aarch64-unknown-linux-gnu 
+      run: cross build --target aarch64-unknown-linux-gnu
