@@ -15,7 +15,8 @@ jobs:
 
     steps:
     - name: Install aarch64-tools
-      run: sudo apt-get install --yes --no-install-recommends binutils-aarch64-linux-gnu
+      run: |
+        sudo apt-get update && sudo apt-get install --yes --no-install-recommends binutils-aarch64-linux-gnu gcc-aarch64-linux-gnu
     
     - name: Install Rustup targets
       run : | 
