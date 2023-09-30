@@ -1,5 +1,4 @@
-#![feature(core_intrinsics)]
-#![feature(float_gamma)]
+
 
 use fdlibm_rs::*;
 
