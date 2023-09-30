@@ -25,6 +25,7 @@ println!("sin(1)={}",value);
     - [X] `x86_64-pc-windows-gnu`
     - [X] `x86_64-unknown-linux-gnu`
     - [X] `x86_64-unknown-linux-musl`
+    - [X] `aarch64-linux-android`
     
 3) <s>Support other [Modes](fdlibm/readme).</s>
 4) Benchmarks.
