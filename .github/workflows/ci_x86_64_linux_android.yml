@@ -36,5 +36,5 @@ jobs:
     - name: Test _SVID3_MODE for x86_64-linux-android
       run:  _SVID3_MODE="" cross test --target x86_64-linux-android
 
-    - name: Build aarch64_linux_android
+    - name: Build ci_x86_64_linux_android
       run: cross build --target x86_64-linux-android
