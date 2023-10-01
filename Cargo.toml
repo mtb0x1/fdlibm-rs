@@ -22,7 +22,98 @@ criterion = { version = "0.5.1", features = ["html_reports"] }
 [lib]
 name = "fdlibm_rs"
 path = "src/lib.rs" 
+crate-type = ["cdylib", "rlib"]
 
 [[bench]]
 name = "acos_benchmark"
+harness = false
+[[bench]]
+name = "atanh_benchmark"
+harness = false
+[[bench]]
+name = "expm1_benchmark"
+harness = false
+[[bench]]
+name = "j1_benchmark"
+harness = false
+[[bench]]
+name = "log_benchmark"
+harness = false
+[[bench]]
+name = "tanh_benchmark"
+harness = false
+[[bench]]
+name = "acosh_benchmark"
+harness = false
+[[bench]]
+name = "cbrt_benchmark"
+harness = false
+[[bench]]
+name = "fabs_benchmark"
+harness = false
+[[bench]]
+name = "jn_benchmark"
+harness = false
+[[bench]]
+name = "pow_benchmark"
+harness = false
+[[bench]]
+name = "asin_benchmark"
+harness = false
+[[bench]]
+name = "ceil_benchmark"
+harness = false
+[[bench]]
+name = "floor_benchmark"
+harness = false
+[[bench]]
+name = "ldexp_benchmark"
+harness = false
+[[bench]]
+name = "sin_benchmark"
+harness = false
+[[bench]]
+name = "asinh_benchmark"
+harness = false
+[[bench]]
+name = "cos_benchmark"
+harness = false
+[[bench]]
+name = "gamma_benchmark"
+harness = false
+[[bench]]
+name = "lgamma_benchmark"
+harness = false
+[[bench]]
+name = "sinh_benchmark"
+harness = false
+[[bench]]
+name = "atan2_benchmark"
+harness = false
+[[bench]]
+name = "cosh_benchmark"
+harness = false
+[[bench]]
+name = "ilogb_benchmark"
+harness = false
+[[bench]]
+name = "log10_benchmark"
+harness = false
+[[bench]]
+name = "sqrt_benchmark"
+harness = false
+[[bench]]
+name = "atan_benchmark"
+harness = false
+[[bench]]
+name = "exp_benchmark"
+harness = false
+[[bench]]
+name = "j0_benchmark"
+harness = false
+[[bench]]
+name = "log1p_benchmark"
+harness = false
+[[bench]]
+name = "tan_benchmark"
 harness = false
