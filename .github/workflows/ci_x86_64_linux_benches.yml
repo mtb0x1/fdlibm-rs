@@ -2,9 +2,9 @@ name: ci_x86_64_linux_benches
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "releases" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "releases" ]
 
 env:
   CARGO_TERM_COLOR: always
