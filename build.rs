@@ -24,8 +24,7 @@ fn bindgen_symbols(path: &str, _flags: &std::collections::HashSet<String>) {
 
 fn build_bundled(flags: &std::collections::HashSet<String>) {
     let mut cfg = cc::Build::new();
-    cfg.include("fdlibm")
-        .file(std::path::Path::new("fdlibm/e_acos.c"))
+    cfg.file(std::path::Path::new("fdlibm/e_acos.c"))
         .file(std::path::Path::new("fdlibm/e_acosh.c"))
         .file(std::path::Path::new("fdlibm/e_asin.c"))
         .file(std::path::Path::new("fdlibm/e_atan2.c"))
@@ -51,9 +50,13 @@ fn build_bundled(flags: &std::collections::HashSet<String>) {
         .file(std::path::Path::new("fdlibm/e_sqrt.c"))
         .file(std::path::Path::new("fdlibm/k_cos.c"))
         .file(std::path::Path::new("fdlibm/k_rem_pio2.c"))
-        .file(std::path::Path::new("fdlibm/k_sin.c"))
-        .file(std::path::Path::new("fdlibm/k_standard.c"))
-        .file(std::path::Path::new("fdlibm/k_tan.c"))
+        .file(std::path::Path::new("fdlibm/k_sin.c"));
+    //#[cfg(not(target_family = "wasm"))] reads the config for the current code being compiled (build.rs)
+    //and a build script is always compiled for the host, so it can be run on the host
+    if std::env::var("CARGO_CFG_TARGET_FAMILY").unwrap() != "wasm" {
+        cfg.file(std::path::Path::new("fdlibm/k_standard.c"));
+    }
+    cfg.file(std::path::Path::new("fdlibm/k_tan.c"))
         .file(std::path::Path::new("fdlibm/s_asinh.c"))
         .file(std::path::Path::new("fdlibm/s_atan.c"))
         .file(std::path::Path::new("fdlibm/s_cbrt.c"))
@@ -67,9 +70,11 @@ fn build_bundled(flags: &std::collections::HashSet<String>) {
         .file(std::path::Path::new("fdlibm/s_floor.c"))
         .file(std::path::Path::new("fdlibm/s_frexp.c"))
         .file(std::path::Path::new("fdlibm/s_ilogb.c"))
-        .file(std::path::Path::new("fdlibm/s_isnan.c"))
-        .file(std::path::Path::new("fdlibm/s_ldexp.c"))
-        .file(std::path::Path::new("fdlibm/s_lib_version.c"))
+        .file(std::path::Path::new("fdlibm/s_isnan.c"));
+    if std::env::var("CARGO_CFG_TARGET_FAMILY").unwrap() != "wasm" {
+        cfg.file(std::path::Path::new("fdlibm/s_ldexp.c"));
+    }
+    cfg.file(std::path::Path::new("fdlibm/s_lib_version.c"))
         .file(std::path::Path::new("fdlibm/s_log1p.c"))
         .file(std::path::Path::new("fdlibm/s_logb.c"))
         .file(std::path::Path::new("fdlibm/s_matherr.c"))
@@ -101,12 +106,13 @@ fn build_bundled(flags: &std::collections::HashSet<String>) {
         .file(std::path::Path::new("fdlibm/w_log.c"))
         .file(std::path::Path::new("fdlibm/w_log10.c"))
         .file(std::path::Path::new("fdlibm/w_pow.c"))
-        .file(std::path::Path::new("fdlibm/w_remainder.c"))
-        .file(std::path::Path::new("fdlibm/w_scalb.c"))
-        .file(std::path::Path::new("fdlibm/w_sinh.c"))
+        .file(std::path::Path::new("fdlibm/w_remainder.c"));
+    if std::env::var("CARGO_CFG_TARGET_FAMILY").unwrap() != "wasm" {
+        cfg.file(std::path::Path::new("fdlibm/w_scalb.c"));
+    }
+    cfg.file(std::path::Path::new("fdlibm/w_sinh.c"))
         .file(std::path::Path::new("fdlibm/w_sqrt.c"));
-    #[cfg(target_endian = "little")]
-    {
+    if std::env::var("CARGO_CFG_TARGET_ENDIAN").unwrap() == "little" {
         cfg.flag("-D__LITTLE_ENDIAN");
     }
     if !flags.is_empty() {
