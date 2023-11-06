@@ -13,7 +13,7 @@ build = "build.rs"
 keywords = ["FDLIBM-rs", "cmath", "math", "IEEE-754", "ffi"]
 
 [build-dependencies]
-bindgen = { version = "0.68.1", default-features = false, features = ["runtime"] }
+bindgen = { version = "0.69.1", default-features = false, features = ["runtime"] }
 cc = { version = "1.0.83"}
 
 [dev-dependencies]
